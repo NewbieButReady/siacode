@@ -1,0 +1,28 @@
+pragma solidity 0.8.18; // This the First line of this Project
+// Lets Begin :)  Start the project and named  it MyToken
+contract MyToken {
+
+    //  This is where i  start to Declare public variables
+    string public tokenName = "Mark";
+    string public tokenAbbrv = "Christian";
+//Then We declare a uint (unsigned integer)
+    uint public totalSupply = 0; 
+
+    // Declare a public mapping to store token balances for each address
+    mapping(address => uint) public balance;
+
+    // Next is we gonna create a mint or new token and assign them in specific address
+    function mint(address _address, uint _value) public {
+        totalSupply += _value;
+        balance[_address] += _value;
+    }
+
+    // Next is we gonna create a burn for existing token from spefici address.
+    function burn(address _address, uint _value) public {
+        // Check if the balance of the address is greater than or equal to the value to be burned
+        if (balance[_address] >= _value) {
+            totalSupply -= _value;
+            balance[_address] -= _value;
+        }
+    }
+}
